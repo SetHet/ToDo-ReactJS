@@ -1,5 +1,5 @@
-import logo from './platzi.webp';
-import './App.css';
+import logo from "./platzi.webp";
+import "./App.css";
 
 function App() {
   return (
@@ -18,7 +18,22 @@ function App() {
           Learn React
         </a>
       </header>
+      <ul>
+        <TodoItem />
+        <TodoItem />
+        <TodoItem />
+      </ul>
     </div>
+  );
+}
+
+function TodoItem(props) {
+  return (
+    <li>
+      <span>V</span>
+      <p>Mensaje</p>
+      <span>X</span>
+    </li>
   );
 }
 
