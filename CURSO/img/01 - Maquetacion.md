@@ -97,7 +97,7 @@ Un componente en react es una funcion que retorna un XML. Estos componentes suel
 
 Los componentes estan compuesto por elementos de react, los que estan en minusculas, como pueden ser `div` o `p` que no son elementos de HTML sino de react que se traduciran a HTML.
 
-### Crear un nuevo componente
+## Crear un nuevo componente
 
 ```js
 // Nuevo componente, props es opcional
@@ -122,3 +122,95 @@ function TodoItem(props) {
     <TodoItem mensaje="hola" activo={true} />
 </ul>
 ```
+
+## Tipos de componentes
+
+### Tipo de cierre
+
+```html
+<!-- Con contenido interno, con etiqueta de apertura y cierre -->
+<TodoList>
+  <TodoItem mensaje="Holaaaaa" />
+  <!-- Sin contenido interno, Auto cierre -->
+  <TodoItem activo="{true}" />
+  <TodoItem />
+</TodoList>
+```
+
+## Componente con contenido interno
+
+Para poder colocar componentes dentro de un componente, en el componente padre hay que agregar el `props.childen`, para que sepa el componente donde tiene que desplegarse los componentes hijos.
+
+```js
+function TodoList(props) {
+  return <ul>{props.children}</ul>;
+}
+```
+
+```html
+<!-- Padre que tiene un props.children -->
+<TodoList>
+  <!-- El contendio de children que son todo lo que contiene -->
+  <TodoItem />
+  <TodoItem />
+  <TodoItem />
+</TodoList>
+```
+
+#### Separar por archivos los componentes
+
+En la carpeta src se puede crear una nueva carpeta llamada `src/components/` donde se pueden agregar nuevos componentes.
+
+Para crear un nuevo componente:
+
+1. Crear en el lugar elegido un archivo con el nombre del componente en `Pascal Case`, por ejemplo `src/components/TodoCounter.js`.
+
+2. Crearmos el componente en el archivo:
+
+   ```js
+   function TodoCounter(props) {
+     return (
+       <h1>
+         {props.completados} de {props.totales} completados
+       </h1>
+     );
+   }
+   ```
+
+3. Exportamos el componente:
+
+   ```js
+   // El default hace que al importar no importe el nombre que le demos
+   export default TodoCounter;
+
+   // Export nombrados que obligan a saber que se importo con el nombre correspondiente
+   export { TodoCounter };
+   ```
+
+4. Importamos el componente en donde queramos usarlo:
+
+   ```js
+   // importar con desestructarizacion
+   import { TodoCounter } from "./components/TodoCounter";
+
+   // importar con default
+   import TodoCountersito from "./components/TodoCounter";
+
+   function App() {
+      return (
+        <div className="App">
+          ...
+          <!-- Usar -->
+          <TodoCounter completados={1} totales={3} />
+          ...
+      );
+   }
+   ```
+
+## Comentarios en el XML
+
+```html
+{/* <CreateTodoButton /> */}
+```
+
+## Comunicacion de componentes con props
