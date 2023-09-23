@@ -19,8 +19,8 @@ function App() {
         </a>
       </header>
       <ul>
-        <TodoItem />
-        <TodoItem />
+        <TodoItem mensaje="Holaaaaa" />
+        <TodoItem activo={true} />
         <TodoItem />
       </ul>
     </div>
@@ -30,8 +30,8 @@ function App() {
 function TodoItem(props) {
   return (
     <li>
-      <span>V</span>
-      <p>Mensaje</p>
+      <span>{props.activo ? "V" : "F"}</span>
+      <p>{props.mensaje ?? "default message"}</p>
       <span>X</span>
     </li>
   );
