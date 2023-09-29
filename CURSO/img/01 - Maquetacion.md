@@ -214,3 +214,156 @@ Para crear un nuevo componente:
 ```
 
 ## Comunicacion de componentes con props
+
+Para comunicarse con los componentes se usan los `props`, estos son un objeto que tiene diversas propiedades como por ejemplo `children` u otros valores custom.
+
+### Crear un componente con propiedades
+
+Un componente puede consumir props de la siguiente forma:
+
+```js
+// Componente con props como parametro
+function TodoCounter(props) {
+  return (
+    <h1>
+      <!-- Usar las propiedades que tiene el props internamente -->
+      {props.completados} de {props.totales} completados
+    </h1>
+  );
+}
+
+export { TodoCounter };
+```
+
+Tambien se puede hacer desestructuralizando las propiedades:
+
+```js
+function TodoCounter({ completados, totales }) {
+  return (
+    <h1>
+      {completados} de {totales} completados
+    </h1>
+  );
+}
+
+export { TodoCounter };
+```
+
+### Entregar propiedades a un componente
+
+Un componente se le puede entregar propiedades, igual como los atributos en el HTML, de la siguiente forma:
+
+```xml
+<!-- Entregar un valor directamente -->
+<TodoItem mensaje="Holaaaaa" />
+<!-- Asignar un valor de una variable -->
+<TodoItem activo={true} />
+<!-- No entregar nada  -->
+<TodoItem />
+```
+
+Las `{}` permiten insertar codigo JS en los componentes del JSX.
+
+Las propiedades que entregamos como atributos no se presentaran como atributos en el HTML final, a excepcion de los atributos definidos en JSX que hacer referencia a los de HTML, pero que no se escriben igual, como: `class` en HTML y `className` en JSX.
+
+La propiedad children no se coloca directamente, porque se le asigna lo que esta dentro del componente, lo que esta definido entre la etiqueta de inicio y cierre.
+
+```html
+<!-- El children seria todo dentro del TodoList que son los TodoItem -->
+<TodoList>
+  <TodoItem />
+  <TodoItem />
+  <TodoItem />
+</TodoList>
+```
+
+# React Fragment
+
+Esto permite no tener que envolver el contenido multiple con una etiqueta, como puede ser un div.
+
+#### Normal
+
+```js
+function App() {
+  return (
+    // DIV para envolver
+    <div className="App">
+      <TodoCounter completados={1} totales={3} />
+      <TodoSearch />
+
+      <TodoList>
+        <TodoItem mensaje="Holaaaaa" />
+        <TodoItem activo={true} />
+        <TodoItem />
+      </TodoList>
+
+      <CreateTodoButton />
+    </div>
+  );
+}
+```
+
+#### React Fragment
+
+```js
+import React from "react";
+
+function App() {
+  return (
+    // React Fragment para envolver
+    <React.Fragment>
+      <TodoCounter completados={1} totales={3} />
+      <TodoSearch />
+
+      <TodoList>
+        <TodoItem mensaje="Holaaaaa" />
+        <TodoItem activo={true} />
+        <TodoItem />
+      </TodoList>
+
+      <CreateTodoButton />
+    </React.Fragment>
+  );
+}
+```
+
+# Renderizar con Arrays
+
+Para renderizar varios elementos en base a un arreglo, esto se hace renderizando arrays:
+
+```js
+
+// Lista con los elementos
+const defaultTodos = [
+  { mensaje: "Comprar el pan", completado: false },
+  { mensaje: "Pasear al perro", completado: true },
+  { mensaje: "Cocinar", completado: false },
+];
+
+function App() {
+  return (
+    <React.Fragment>
+      <TodoCounter completados={1} totales={3} />
+      <TodoSearch />
+
+      <TodoList>
+        <!-- Hacer un map con el arreglo, generando los elementos en el retorno -->
+        {defaultTodos.map((todo, id) => (
+          <TodoItem
+            /* Reparar el error de key --> */
+            key={id}
+            mensaje={todo.mensaje}
+            completado={todo.completado}
+          />
+        ))}
+        <!-- Agregar una lista de XML -->
+        {[<TodoItem></TodoItem>, <TodoItem></TodoItem>]}
+      </TodoList>
+
+      <CreateTodoButton />
+    </React.Fragment>
+  );
+}
+```
+
+PD Error: Puede saltar el error en la consola del navegador de que le falta una propiedad `key` para distinguir los elementos con un elemento identificador distinto. Pero en versiones recientes no parece ser obligatorio.

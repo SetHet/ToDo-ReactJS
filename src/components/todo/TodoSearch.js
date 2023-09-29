@@ -1,5 +1,5 @@
 function TodoSearch(props) {
-  return <input></input>;
+  return <input placeholder={props.placeholder ?? "Pagar cuentas"}></input>;
 }
 
 export { TodoSearch };
