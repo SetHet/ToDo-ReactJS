@@ -1,11 +1,10 @@
+// import React from "react";
 // import logo from "./platzi.webp";
-import "./App.css";
 import { TodoCounter } from "./components/todo/TodoCounter";
 import { TodoSearch } from "./components/todo/TodoSearch";
 import { TodoList } from "./components/todo/TodoList";
 import { TodoItem } from "./components/todo/TodoItem";
 import { CreateTodoButton } from "./components/todo/CreateTodoButton";
-import React from "react";
 
 const defaultTodos = [
   { mensaje: "Comprar el pan", completado: false },
@@ -15,7 +14,7 @@ const defaultTodos = [
 
 function App() {
   return (
-    <React.Fragment>
+    <>
       <TodoCounter completados={1} totales={3} />
       <TodoSearch />
 
@@ -31,7 +30,7 @@ function App() {
       </TodoList>
 
       <CreateTodoButton />
-    </React.Fragment>
+    </>
   );
 }
 

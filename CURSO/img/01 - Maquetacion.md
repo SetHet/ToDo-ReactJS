@@ -327,6 +327,8 @@ function App() {
 }
 ```
 
+o se puede cambiar `<React.Fragment> ... </React.Fragment>` por `<> ... </>` y React lo traducira de la misma forma.
+
 # Renderizar con Arrays
 
 Para renderizar varios elementos en base a un arreglo, esto se hace renderizando arrays:
@@ -367,3 +369,54 @@ function App() {
 ```
 
 PD Error: Puede saltar el error en la consola del navegador de que le falta una propiedad `key` para distinguir los elementos con un elemento identificador distinto. Pero en versiones recientes no parece ser obligatorio.
+
+# Agregar Estilos CSS
+
+## Estilos en linea
+
+No son los mismos estilos en linea que los HTML. Porque hay que agregar mediante variables los estilo. Esta variable tiene que ser un objeto en `camelCase`.
+
+```js
+// Estilos
+const estilos = {
+  //backgroundColor: "red",
+  fontSize: "24px",
+  textAlign: "center",
+  margin: 0,
+  padding: "48px",
+};
+
+function TodoCounter({ completados, totales }) {
+  return (
+    // Agregar los estilos
+    <h1 style={estilos}>
+      {completados} de {totales} completados
+    </h1>
+  );
+}
+```
+
+O directamente agregarlo en la linea:
+
+```html
+<h1 style={{ backgroundColor: "red" }}>
+```
+
+## Hojas de estilo
+
+Archivos `.css` que podemos importar a los componentes.
+
+```css
+h1 {
+  font-size: 24px;
+  text-align: center;
+  margin: 0;
+  padding: 48px;
+}
+```
+
+Para agregarlo, solo se requiere importalo en el JSX:
+
+```js
+import "./TodoCounter.css";
+```

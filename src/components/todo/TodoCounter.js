@@ -1,3 +1,5 @@
+import "./TodoCounter.css";
+
 function TodoCounter({ completados, totales }) {
   return (
     <h1>
