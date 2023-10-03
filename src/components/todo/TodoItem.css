@@ -36,3 +36,7 @@ li {
     margin: auto;
 
 }
+
+.text--complete {
+    text-decoration: line-through;
+}

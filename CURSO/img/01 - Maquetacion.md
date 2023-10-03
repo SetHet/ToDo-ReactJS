@@ -420,3 +420,25 @@ Para agregarlo, solo se requiere importalo en el JSX:
 ```js
 import "./TodoCounter.css";
 ```
+
+# Clases dinamicas en React
+
+Con la comilla invertida y las llaves se puede trabajar con strings especiales. Dentro con `${}` se puede ingresar una condicion.
+
+Por ejemplo si se quiere usar una trinaria (operador ternario):
+
+```js
+className=
+  {`ready-selector
+    ${props.completado ? "ready-selector--complete" : ""}
+  `}
+```
+
+Por ejemplo si se quiere usar `si y solo si`:
+
+```js
+className=
+  {`ready-selector
+    ${props.completado && "ready-selector--complete"}
+  `}
+```
