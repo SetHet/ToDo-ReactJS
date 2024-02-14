@@ -2,7 +2,7 @@ import "./CreateTodoButton.css";
 
 function CreateTodoButton(props) {
   return (
-    <button className="add-button">
+    <button className="add-button" onClick={() => console.log("Click crear")}>
       +{/* <div className="add-button-plus">+</div> */}
     </button>
   );

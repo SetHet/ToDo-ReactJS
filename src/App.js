@@ -1,4 +1,4 @@
-// import React from "react";
+import React from "react";
 // import logo from "./platzi.webp";
 import { TodoCounter } from "./components/todo/TodoCounter";
 import { TodoSearch } from "./components/todo/TodoSearch";
@@ -7,19 +7,28 @@ import { TodoItem } from "./components/todo/TodoItem";
 import { CreateTodoButton } from "./components/todo/CreateTodoButton";
 
 const defaultTodos = [
-  { mensaje: "Comprar el pan", completado: false },
+  { mensaje: "Comprar el pan", completado: true },
   { mensaje: "Pasear al perro", completado: true },
   { mensaje: "Cocinar", completado: false },
 ];
 
 function App() {
+  const [todos, setTodos] = React.useState(defaultTodos);
+  const [searchValue, setSearchValue] = React.useState("");
+
+  const completedTodos = todos.filter((x) => !!x.completado).length;
+  const totalTodos = todos.length;
+  const searchTodos = todos.filter((value) =>
+    value.mensaje.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
   return (
     <>
-      <TodoCounter completados={1} totales={3} />
-      <TodoSearch />
+      <TodoCounter completados={completedTodos} totales={totalTodos} />
+      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
 
       <TodoList>
-        {defaultTodos.map((todo, index) => (
+        {searchTodos.map((todo, index) => (
           <TodoItem
             key={index}
             index={index}
