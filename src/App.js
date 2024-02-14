@@ -22,6 +22,19 @@ function App() {
     value.mensaje.toLowerCase().includes(searchValue.toLowerCase())
   );
 
+  function EliminarToDo(index) {
+    const newToDos = [...todos];
+    newToDos.splice(index, 1);
+    setTodos(newToDos);
+  }
+
+  const completeToDo = (index) => {
+    const newToDos = [...todos];
+    newToDos[index].completado = !newToDos[index].completado;
+    setTodos(newToDos);
+    console.log(`complete todo ${index}`);
+  };
+
   return (
     <>
       <TodoCounter completados={completedTodos} totales={totalTodos} />
@@ -34,6 +47,8 @@ function App() {
             index={index}
             mensaje={todo.mensaje}
             completado={todo.completado}
+            onComplete={() => completeToDo(index)}
+            onRemove={() => EliminarToDo(index)}
           />
         ))}
       </TodoList>

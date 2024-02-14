@@ -55,8 +55,28 @@ setStateName(nuevovalor);
 
 ### Estados derivados
 
+Que se puede guardar en una variable alguna forma trabajada de algun estado. Por ejemplo conseguir una lista filtrada de elementos.
+
+```jsx
+const completed = list.filter((elem) => elem.completed);
+```
+
 ## Ver estados de componentes padres
 
-Estos se envian a traves de props
+Estos se envian a traves de props, el padre le entrega al nuevo componente hijo los datos.
+
+```jsx
+<Hijo nombrePadre={miNombre}>
+```
 
 ## Ver estados de componentes hijos
+
+Se le envia al hijo mediante props una funcion callback.
+
+```jsx
+// padre
+<Hijo funcionOnComplete={funcionMeComplete}>
+
+// hijo
+<input onClick={() => funcionMeComplete(index)}>
+```
