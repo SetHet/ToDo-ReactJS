@@ -1,4 +1,6 @@
 import "./TodoItem.css";
+import { CompleteIcon } from "./CompleteIcon";
+import { DeleteIcon } from "./DeleteIcon";
 
 function TodoItem(props) {
   return (
@@ -10,19 +12,21 @@ function TodoItem(props) {
           ${props.completado ? "ready-selector--complete" : ""}`}
         onClick={() => props.onComplete()}
       /> */}
-      <span
+      {/* <span
         onClick={props.onComplete}
         className={`ready-selector 
           ${props.completado ? "ready-selector--complete" : ""}`}
       >
         {props.completado ? "✅" : "☑️"}
-      </span>
+      </span> */}
+      <CompleteIcon />
       <div className={`text ${props.completado && "text--complete"}`}>
         {props.mensaje ?? "default message"}
       </div>
-      <button className="delete-selector" onClick={props.onRemove}>
+      {/* <button className="delete-selector" onClick={props.onRemove}>
         X
-      </button>
+      </button> */}
+      <DeleteIcon />
     </li>
   );
 }
