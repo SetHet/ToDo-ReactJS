@@ -1,10 +1,10 @@
 import React from "react";
 import { ToDoIcon } from "../../libreria/ToDoIcon";
 
-function DeleteIcon() {
+function DeleteIcon({ onClick }) {
   return (
     <>
-      <ToDoIcon type="delete" color="red" />
+      <ToDoIcon type="delete" color="gray" onClick={onClick} />
     </>
   );
 }

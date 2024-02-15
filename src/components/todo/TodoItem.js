@@ -19,14 +19,14 @@ function TodoItem(props) {
       >
         {props.completado ? "✅" : "☑️"}
       </span> */}
-      <CompleteIcon />
-      <div className={`text ${props.completado && "text--complete"}`}>
+      <CompleteIcon completed={props.completed} onClick={props.onComplete} />
+      <div className={`text ${props.completed && "text--complete"}`}>
         {props.mensaje ?? "default message"}
       </div>
       {/* <button className="delete-selector" onClick={props.onRemove}>
         X
       </button> */}
-      <DeleteIcon />
+      <DeleteIcon onClick={props.onRemove} />
     </li>
   );
 }

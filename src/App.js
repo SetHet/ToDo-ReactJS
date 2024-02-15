@@ -46,7 +46,7 @@ function App() {
             key={index}
             index={index}
             mensaje={todo.mensaje}
-            completado={todo.completado}
+            completed={todo.completado}
             onComplete={() => completeToDo(index)}
             onRemove={() => EliminarToDo(index)}
           />
