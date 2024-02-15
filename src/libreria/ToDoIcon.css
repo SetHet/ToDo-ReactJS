@@ -1,0 +1,14 @@
+.Icon-container {
+    width: 24px;
+    height: 24px;
+}
+
+.Icon-container:hover {
+    cursor: pointer;
+}
+
+.Icon-svg {
+    width: 18px;
+    height: 18px;
+    margin: 6px;
+}

@@ -4,7 +4,7 @@ import { ToDoIcon } from "../../libreria/ToDoIcon";
 function DeleteIcon() {
   return (
     <>
-      <ToDoIcon type="delete" color="gray" />
+      <ToDoIcon type="delete" color="red" />
     </>
   );
 }
