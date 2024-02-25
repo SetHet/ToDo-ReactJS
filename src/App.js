@@ -12,8 +12,17 @@ const defaultTodos = [
   { mensaje: "Cocinar", completado: false },
 ];
 
+const STORAGENAME = "TODOS_V1";
+
 function App() {
-  const [todos, setTodos] = React.useState(defaultTodos);
+  let parsedToDos = JSON.parse(localStorage.getItem(STORAGENAME));
+
+  if (!parsedToDos) {
+    parsedToDos = defaultTodos;
+    saveToDos(parsedToDos);
+  }
+
+  const [todos, setTodos] = React.useState(parsedToDos);
   const [searchValue, setSearchValue] = React.useState("");
 
   const completedTodos = todos.filter((x) => !!x.completado).length;
@@ -25,15 +34,21 @@ function App() {
   function EliminarToDo(index) {
     const newToDos = [...todos];
     newToDos.splice(index, 1);
-    setTodos(newToDos);
+    saveToDos(newToDos);
   }
 
   const completeToDo = (index) => {
     const newToDos = [...todos];
     newToDos[index].completado = !newToDos[index].completado;
-    setTodos(newToDos);
+    saveToDos(newToDos);
+
     console.log(`complete todo ${index}`);
   };
+
+  function saveToDos(_json) {
+    localStorage.setItem(STORAGENAME, JSON.stringify(_json));
+    setTodos(_json);
+  }
 
   return (
     <>
