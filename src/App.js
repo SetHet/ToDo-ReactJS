@@ -14,15 +14,26 @@ const defaultTodos = [
 
 const STORAGENAME = "TODOS_V1";
 
-function App() {
-  let parsedToDos = JSON.parse(localStorage.getItem(STORAGENAME));
+function useLocalStorage(itemName, initialValue) {
+  let parsedItem = JSON.parse(localStorage.getItem(itemName));
 
-  if (!parsedToDos) {
-    parsedToDos = defaultTodos;
-    saveToDos(parsedToDos);
+  if (!parsedItem) {
+    parsedItem = initialValue;
+    saveItem(parsedItem);
   }
 
-  const [todos, setTodos] = React.useState(parsedToDos);
+  const [item, setItem] = React.useState(parsedItem);
+
+  function saveItem(_json) {
+    localStorage.setItem(itemName, JSON.stringify(_json));
+    setItem(_json);
+  }
+
+  return [item, saveItem];
+}
+
+function App() {
+  const [todos, setTodos] = useLocalStorage(STORAGENAME, defaultTodos);
   const [searchValue, setSearchValue] = React.useState("");
 
   const completedTodos = todos.filter((x) => !!x.completado).length;
@@ -34,21 +45,16 @@ function App() {
   function EliminarToDo(index) {
     const newToDos = [...todos];
     newToDos.splice(index, 1);
-    saveToDos(newToDos);
+    setTodos(newToDos);
   }
 
   const completeToDo = (index) => {
     const newToDos = [...todos];
     newToDos[index].completado = !newToDos[index].completado;
-    saveToDos(newToDos);
+    setTodos(newToDos);
 
     console.log(`complete todo ${index}`);
   };
-
-  function saveToDos(_json) {
-    localStorage.setItem(STORAGENAME, JSON.stringify(_json));
-    setTodos(_json);
-  }
 
   return (
     <>
