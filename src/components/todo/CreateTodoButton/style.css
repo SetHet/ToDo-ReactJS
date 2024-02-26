@@ -21,8 +21,9 @@
 .add-button:hover {
     scale: 1.1;
     border: 3px solid black;
-    transform: rotate(90deg)
-    
+    transform: rotate(90deg);
+    color: black;
+    background-color: greenyellow;
 }
 
 .add-button:active {

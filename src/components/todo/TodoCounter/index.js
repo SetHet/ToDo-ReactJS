@@ -1,4 +1,4 @@
-import "./TodoCounter.css";
+import "./style.css";
 
 function TodoCounter({ completados, totales }) {
   return (

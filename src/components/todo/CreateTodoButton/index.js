@@ -1,4 +1,4 @@
-import "./CreateTodoButton.css";
+import "./style.css";
 
 function CreateTodoButton(props) {
   return (

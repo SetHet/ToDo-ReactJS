@@ -78,3 +78,16 @@ console.log(nombre);
 console.log(nombreColor("green"));
 setNombre("citrico");
 ```
+
+# Ordenar con carpetas
+
+Un estilo de orden de carpetas, puede ser por funcionalidad. Donde se crea una carpeta con el nombre de la funcionalidad, y dentro de esta tiene un archivo `index.js` que sera el javascript por defecto.
+
+```files
+src
+- App.js
+- BotonCrear
+-- index.js
+-- style.css
+-- html.html
+```
