@@ -1,11 +1,7 @@
 import React from "react";
 // import logo from "./platzi.webp";
-import { TodoCounter } from "./components/todo/TodoCounter";
-import { TodoSearch } from "./components/todo/TodoSearch";
-import { TodoList } from "./components/todo/TodoList";
-import { TodoItem } from "./components/todo/TodoItem";
-import { CreateTodoButton } from "./components/todo/CreateTodoButton";
-import { useLocalStorage } from "./libreria/useLocalStorage";
+import { AppUI } from "./AppUI";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 const defaultTodos = [
   { mensaje: "Comprar el pan", completado: true },
@@ -40,25 +36,15 @@ function App() {
   };
 
   return (
-    <>
-      <TodoCounter completados={completedTodos} totales={totalTodos} />
-      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
-
-      <TodoList>
-        {searchTodos.map((todo, index) => (
-          <TodoItem
-            key={index}
-            index={index}
-            mensaje={todo.mensaje}
-            completed={todo.completado}
-            onComplete={() => completeToDo(index)}
-            onRemove={() => EliminarToDo(index)}
-          />
-        ))}
-      </TodoList>
-
-      <CreateTodoButton />
-    </>
+    <AppUI
+      completedTodos={completedTodos}
+      searchValue={searchValue}
+      searchTodos={searchTodos}
+      completeToDo={completeToDo}
+      EliminarToDo={EliminarToDo}
+      totalTodos={totalTodos}
+      setSearchValue={setSearchValue}
+    />
   );
 }
 

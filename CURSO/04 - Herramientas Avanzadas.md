@@ -91,3 +91,5 @@ src
 -- style.css
 -- html.html
 ```
+
+<img src='./img/folders.png'>

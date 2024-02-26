@@ -1,5 +1,5 @@
 import React from "react";
-import { ToDoIcon } from "../../../../libreria/ToDoIcon";
+import { ToDoIcon } from "../../../todoicon";
 
 function CompleteIcon({ completed, onClick }) {
   return (
