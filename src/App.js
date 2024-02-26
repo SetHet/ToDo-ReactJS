@@ -5,6 +5,7 @@ import { TodoSearch } from "./components/todo/TodoSearch";
 import { TodoList } from "./components/todo/TodoList";
 import { TodoItem } from "./components/todo/TodoItem";
 import { CreateTodoButton } from "./components/todo/CreateTodoButton";
+import { useLocalStorage } from "./libreria/useLocalStorage";
 
 const defaultTodos = [
   { mensaje: "Comprar el pan", completado: true },
@@ -13,24 +14,6 @@ const defaultTodos = [
 ];
 
 const STORAGENAME = "TODOS_V1";
-
-function useLocalStorage(itemName, initialValue) {
-  let parsedItem = JSON.parse(localStorage.getItem(itemName));
-
-  if (!parsedItem) {
-    parsedItem = initialValue;
-    saveItem(parsedItem);
-  }
-
-  const [item, setItem] = React.useState(parsedItem);
-
-  function saveItem(_json) {
-    localStorage.setItem(itemName, JSON.stringify(_json));
-    setItem(_json);
-  }
-
-  return [item, saveItem];
-}
 
 function App() {
   const [todos, setTodos] = useLocalStorage(STORAGENAME, defaultTodos);
