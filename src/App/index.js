@@ -12,7 +12,12 @@ const defaultTodos = [
 const STORAGENAME = "TODOS_V1";
 
 function App() {
-  const [todos, setTodos] = useLocalStorage(STORAGENAME, defaultTodos);
+  const {
+    item: todos,
+    saveItem: setTodos,
+    loading,
+    error,
+  } = useLocalStorage(STORAGENAME, []);
   const [searchValue, setSearchValue] = React.useState("");
 
   const completedTodos = todos.filter((x) => !!x.completado).length;
@@ -44,6 +49,8 @@ function App() {
       EliminarToDo={EliminarToDo}
       totalTodos={totalTodos}
       setSearchValue={setSearchValue}
+      loading={loading}
+      error={error}
     />
   );
 }

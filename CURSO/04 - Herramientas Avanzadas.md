@@ -93,3 +93,19 @@ src
 ```
 
 <img src='./img/folders.png'>
+
+# React Effect
+
+Son un Hook que permite correr codigo asincronico en ciertos casos. Se puede llegar a ejecutar en bucle infinito si no se le entrega un segundo parametro array. Con el array vacio se ejecuta la primera vez y con el array con elementos se ejecuta la primera vez y cuando ocurra un cambio en determinados estados.
+
+Se ejecuta con:
+
+```js
+React.useEffect(funcion, array_estados);
+
+React.useEffect(() => {
+  console.log("Cambio las monedas");
+}, [dolares, rublos]);
+```
+
+Parece que funciona sin usar asincronismo.
