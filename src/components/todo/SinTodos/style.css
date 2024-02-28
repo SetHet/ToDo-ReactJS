@@ -1,0 +1,23 @@
+.ApuntadorCrearNuevo {
+    rotate: 90deg;
+    scale: 400%;
+    animation: apuntador 1000ms infinite 100ms linear;
+    position: absolute;
+    bottom: 25px;
+    right: 150px;
+}
+
+@keyframes apuntador {
+    0% {
+        right: 150px;
+        
+    }
+
+    50% {
+        right: 100px;
+    }
+
+    100% {
+        right: 150px;
+    }
+}
