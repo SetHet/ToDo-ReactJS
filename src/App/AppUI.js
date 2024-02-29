@@ -6,39 +6,34 @@ import { CreateTodoButton } from "../components/todo/CreateTodoButton";
 import { LoadingToDos } from "../components/todo/LoadingToDos";
 import { ErrorLoadingTodos } from "../components/todo/ErrorLoadingTodos";
 import { SinTodos } from "../components/todo/SinTodos";
+import { TodoContext } from "../components/todoContext";
 
-function AppUI({
-  completedTodos,
-  searchValue,
-  searchTodos,
-  completeToDo,
-  EliminarToDo,
-  totalTodos,
-  setSearchValue,
-  loading,
-  error,
-}) {
+function AppUI() {
   return (
     <>
       <TodoCounter completados={completedTodos} totales={totalTodos} />
       <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
 
-      <TodoList>
-        {loading && <LoadingToDos />}
-        {error && <ErrorLoadingTodos />}
-        {!loading && searchTodos.length === 0 && <SinTodos />}
+      <TodoContext.Consumer>
+        {(searchTodos, completeToDo, EliminarToDo, loading, error) => (
+          <TodoList>
+            {loading && <LoadingToDos />}
+            {error && <ErrorLoadingTodos />}
+            {!loading && searchTodos.length === 0 && <SinTodos />}
 
-        {searchTodos.map((todo, index) => (
-          <TodoItem
-            key={index}
-            index={index}
-            mensaje={todo.mensaje}
-            completed={todo.completado}
-            onComplete={() => completeToDo(index)}
-            onRemove={() => EliminarToDo(index)}
-          />
-        ))}
-      </TodoList>
+            {searchTodos.map((todo, index) => (
+              <TodoItem
+                key={index}
+                index={index}
+                mensaje={todo.mensaje}
+                completed={todo.completado}
+                onComplete={() => completeToDo(index)}
+                onRemove={() => EliminarToDo(index)}
+              />
+            ))}
+          </TodoList>
+        )}
+      </TodoContext.Consumer>
 
       <CreateTodoButton />
     </>

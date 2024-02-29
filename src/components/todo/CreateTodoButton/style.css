@@ -15,13 +15,13 @@
     justify-content: center;
     cursor: pointer;
     margin: 0;
-    transition: 100ms all;
+    transition: 200ms all;
 }
 
 .add-button:hover {
     scale: 1.1;
     border: 3px solid black;
-    transform: rotate(90deg);
+    transform: rotate(360deg);
     color: black;
     background-color: greenyellow;
 }

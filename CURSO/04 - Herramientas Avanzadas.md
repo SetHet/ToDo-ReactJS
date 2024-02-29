@@ -109,3 +109,72 @@ React.useEffect(() => {
 ```
 
 Parece que funciona sin usar asincronismo.
+
+# React Context
+
+Permite crear un espacio de informacion compartida para la aplicacion. Asi no hay que entregar a travez de props los datos, modificadores de estado, funciones, callbacks u otros.
+
+### Crear el contexto
+
+```js
+import React from "react";
+
+// creamos un nuevo contexto
+const pilasContext = React.createContext();
+
+// creamos una funcion para proveer, esta recibe a los hijos del html
+// esta solo lo usaremos una vez antes de donde usaremos el contexto
+function PilasProvider({children}) {
+  const variables = {
+    pilas = 10,
+    addPila = (() => pilas++),
+  }
+
+  return <PilasContext.Provider values={variables}>{children}</PilasContext.Provider>;
+}
+
+// no se que hace aqui, puede que no sea necesario, aun
+<PilasContext.Consumer></PilasContext.Consumer>;
+
+// exportamos el provider
+export { PilasContext, PilasProvider };
+```
+
+### Colocar el provider en el lugar correcto
+
+Esto puede ser al inicio de la aplicacion o en una posicion posterior, pero debe estar ante sus PilasContext.Consumer.
+
+```js
+import {PilasProvider} from './PilasContext'
+
+function App(){
+  return <PilasProvider><AppUI/><PilasProvider/>
+}
+```
+
+### Colocar los consumer
+
+Estos se colocan donde se quiera consumir el contexto.
+
+```js
+import { PilasContext } from "./PilasContext";
+
+function AppUI() {
+  return;
+  <>
+    <Title />
+    <Subtitle />
+    // usamos el contexto
+    <PilasContext.Consumer>
+      // creamos una funcion para consumir con las variables
+      {(pilas, addPila) => (
+        // usamos las variables del contexto
+        <>
+          <CantidadPilas pilas={pilas} />
+          <BotonAddPila func={addPila} />
+        </>
+      )}
+    </PilasContext.Consumer>
+  </>;
+}
+```
