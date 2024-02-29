@@ -11,11 +11,11 @@ import { TodoContext } from "../components/todoContext";
 function AppUI() {
   return (
     <>
-      <TodoCounter completados={completedTodos} totales={totalTodos} />
-      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
+      <TodoCounter />
+      <TodoSearch />
 
       <TodoContext.Consumer>
-        {(searchTodos, completeToDo, EliminarToDo, loading, error) => (
+        {({ searchTodos, completeToDo, EliminarToDo, loading, error }) => (
           <TodoList>
             {loading && <LoadingToDos />}
             {error && <ErrorLoadingTodos />}

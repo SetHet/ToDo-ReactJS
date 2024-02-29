@@ -167,7 +167,7 @@ function AppUI() {
     // usamos el contexto
     <PilasContext.Consumer>
       // creamos una funcion para consumir con las variables
-      {(pilas, addPila) => (
+      {({ pilas, addPila }) => (
         // usamos las variables del contexto
         <>
           <CantidadPilas pilas={pilas} />
@@ -178,3 +178,25 @@ function AppUI() {
   </>;
 }
 ```
+
+# Hook useContext
+
+En lugar de usar el Context.Consumer, se puede usar:
+
+```js
+// llamamos las variables del contexto
+const { pilas, addPila } = React.useContext(PilasContext);
+
+function AppUI() {
+  return;
+  <>
+    <Title />
+    <Subtitle />
+    // usamos las variables del contexto
+    <CantidadPilas pilas={pilas} />
+    <BotonAddPila func={addPila} />
+  </>;
+}
+```
+
+Pero es requerido si o si el Context.Provider al comienzo.

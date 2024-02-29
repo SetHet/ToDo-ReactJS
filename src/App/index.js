@@ -6,7 +6,7 @@ import { TodoProvider } from "../components/todoContext";
 function App() {
   return (
     <TodoProvider>
-      <AppUI />;
+      <AppUI />
     </TodoProvider>
   );
 }
