@@ -29,7 +29,7 @@ function AppUI() {
           <TodoList>
             {loading && <LoadingToDos />}
             {error && <ErrorLoadingTodos />}
-            {!loading && searchTodos.length === 0 && <SinTodos />}
+            {!loading && searchTodos.length === 0 && !openModal && <SinTodos />}
 
             {searchTodos.map((todo, index) => (
               <TodoItem
@@ -45,17 +45,14 @@ function AppUI() {
 
           <CreateTodoButton
             action={() => {
-              setOpenModal(true);
+              setOpenModal(!openModal);
             }}
+            closeMode={openModal}
           />
 
           {openModal && (
             <Modal>
-              <div
-                onClick={() => {
-                  setOpenModal(true);
-                }}
-              ></div>
+              <div></div>
             </Modal>
           )}
         </>

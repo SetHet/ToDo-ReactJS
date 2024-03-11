@@ -1,9 +1,12 @@
 import "./style.css";
 
-function CreateTodoButton({ action }) {
+function CreateTodoButton({ action, closeMode }) {
   return (
-    <button className="add-button" onClick={() => action()}>
-      +{/* <div className="add-button-plus">+</div> */}
+    <button
+      className={`add-button ${closeMode && "add-button-close"} `}
+      onClick={() => action()}
+    >
+      {closeMode ? "x" : "+"}
     </button>
   );
 }
