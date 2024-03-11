@@ -43,9 +43,21 @@ function AppUI() {
             ))}
           </TodoList>
 
-          <CreateTodoButton onClick={() => setOpenModal(true)} />
+          <CreateTodoButton
+            action={() => {
+              setOpenModal(true);
+            }}
+          />
 
-          {openModal && <Modal>LA funcionalidad de agregar todos</Modal>}
+          {openModal && (
+            <Modal>
+              <div
+                onClick={() => {
+                  setOpenModal(true);
+                }}
+              ></div>
+            </Modal>
+          )}
         </>
       )}
     </TodoContext.Consumer>

@@ -1,8 +1,8 @@
 import "./style.css";
 
-function CreateTodoButton(props) {
+function CreateTodoButton({ action }) {
   return (
-    <button className="add-button" onClick={() => console.log("Click crear")}>
+    <button className="add-button" onClick={() => action()}>
       +{/* <div className="add-button-plus">+</div> */}
     </button>
   );
