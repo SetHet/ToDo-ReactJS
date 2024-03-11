@@ -7,15 +7,25 @@ import { LoadingToDos } from "../components/todo/LoadingToDos";
 import { ErrorLoadingTodos } from "../components/todo/ErrorLoadingTodos";
 import { SinTodos } from "../components/todo/SinTodos";
 import { TodoContext } from "../components/todoContext";
+import { Modal } from "../components/todo/Modal";
+import React from "react";
 
 function AppUI() {
   return (
-    <>
-      <TodoCounter />
-      <TodoSearch />
+    <TodoContext.Consumer>
+      {({
+        searchTodos,
+        completeToDo,
+        EliminarToDo,
+        loading,
+        error,
+        openModal,
+        setOpenModal,
+      }) => (
+        <>
+          <TodoCounter />
+          <TodoSearch />
 
-      <TodoContext.Consumer>
-        {({ searchTodos, completeToDo, EliminarToDo, loading, error }) => (
           <TodoList>
             {loading && <LoadingToDos />}
             {error && <ErrorLoadingTodos />}
@@ -32,11 +42,13 @@ function AppUI() {
               />
             ))}
           </TodoList>
-        )}
-      </TodoContext.Consumer>
 
-      <CreateTodoButton />
-    </>
+          <CreateTodoButton onClick={() => setOpenModal(true)} />
+
+          {openModal && <Modal>LA funcionalidad de agregar todos</Modal>}
+        </>
+      )}
+    </TodoContext.Consumer>
   );
 }
 

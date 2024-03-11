@@ -26,6 +26,8 @@ function TodoProvider({ children }) {
     value.mensaje.toLowerCase().includes(searchValue.toLowerCase())
   );
 
+  const [openModal, setOpenModal] = React.useState(false);
+
   function EliminarToDo(index) {
     const newToDos = [...todos];
     newToDos.splice(index, 1);
@@ -50,6 +52,8 @@ function TodoProvider({ children }) {
     setSearchValue,
     loading,
     error,
+    openModal,
+    setOpenModal,
   };
 
   return <TodoContext.Provider value={values}>{children}</TodoContext.Provider>;

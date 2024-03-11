@@ -200,3 +200,42 @@ function AppUI() {
 ```
 
 Pero es requerido si o si el Context.Provider al comienzo.
+
+# React Portals
+
+Permite teletransportar componentes de react entre nodos de html. Esto puede ser util para pantallas emergentes o desplazamiento a diferentes partes de la pagina los componentes. El componente puede estar de forma simultanea en diferentes partes?
+
+Para que funcione es necesario envolverlo en un componente modal.
+
+Se tendra que indicar el nodo al que enviar la teletransportacion. Parece ser que al invocar el nodo desde cualquier parte del codigo, el componente se almacenara en un elemento que indiquemos con su id, y no tanto como que se agrega directo al html. En el html principal, debajo del root podemos agregar la direccion donde se anidara el modal.
+
+```html
+<body>
+  <div id="root"></div>
+  <div id="modal"></div>
+</body>
+```
+
+Hay que crear el portal, para esto crearemos un componente que llamaremos modal que sera el que se invoke.
+
+```js
+import React from "react";
+import ReactDOM from "react-dom";
+
+// modal es generico, este usa los portales
+function Modal({ children }) {
+  // retornar un portal que contenido y a donde
+  return ReactDOM.createPortal(
+    <div className="Modal">{children}</div>,
+    document.getElementById("modal")
+  );
+}
+
+export { Modal };
+```
+
+Para llamar al portal se tiene que colocar el portal en el UI y este puede ser activado a travez de una condicional externa a el.
+
+```js
+
+```
