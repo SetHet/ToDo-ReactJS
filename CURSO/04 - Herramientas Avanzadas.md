@@ -237,5 +237,18 @@ export { Modal };
 Para llamar al portal se tiene que colocar el portal en el UI y este puede ser activado a travez de una condicional externa a el.
 
 ```js
+<CreateTodoButton
+  action={() => {
+    setOpenModal(!openModal);
+  }}
+  closeMode={openModal}
+/>;
 
+{
+  openModal && (
+    <Modal>
+      <div></div>
+    </Modal>
+  );
+}
 ```
