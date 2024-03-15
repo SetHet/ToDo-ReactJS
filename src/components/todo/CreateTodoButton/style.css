@@ -17,6 +17,7 @@
     margin: 0;
     transition: 200ms all;
     z-index: 1;
+    box-shadow: 0 0 20px 2px rgb(0, 128, 73);
 }
 
 .add-button:hover {
@@ -25,6 +26,7 @@
     transform: rotate(360deg);
     color: black;
     background-color: greenyellow;
+    box-shadow: 0 0 20px 2px greenyellow;
 }
 
 .add-button:active {
@@ -43,6 +45,7 @@
 
 .add-button-close {
     background-color: red;
+    box-shadow: 0 0 20px 2px red;
 }
 
 .add-button-close:hover {

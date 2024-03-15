@@ -8,6 +8,7 @@ import { ErrorLoadingTodos } from "../components/todo/ErrorLoadingTodos";
 import { SinTodos } from "../components/todo/SinTodos";
 import { TodoContext } from "../components/todoContext";
 import { Modal } from "../components/todo/Modal";
+import { ToDoForm } from "../components/todo/ToDoForm";
 import React from "react";
 
 function AppUI() {
@@ -52,7 +53,7 @@ function AppUI() {
 
           {openModal && (
             <Modal>
-              <div></div>
+              <ToDoForm />
             </Modal>
           )}
         </>

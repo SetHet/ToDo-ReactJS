@@ -42,6 +42,12 @@ function TodoProvider({ children }) {
     console.log(`complete todo ${index}`);
   };
 
+  const addToDo = (text) => {
+    const newToDo = { completado: false, mensaje: text };
+    const newToDos = [...todos, newToDo];
+    setTodos(newToDos);
+  };
+
   const values = {
     completedTodos,
     searchValue,
@@ -54,6 +60,7 @@ function TodoProvider({ children }) {
     error,
     openModal,
     setOpenModal,
+    addToDo,
   };
 
   return <TodoContext.Provider value={values}>{children}</TodoContext.Provider>;
