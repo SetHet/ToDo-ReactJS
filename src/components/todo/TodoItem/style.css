@@ -36,7 +36,8 @@ li {
 
 .text {
     margin: auto;
-
+    line-break: anywhere;
+    max-width: 200px;
 }
 
 .text--complete {
