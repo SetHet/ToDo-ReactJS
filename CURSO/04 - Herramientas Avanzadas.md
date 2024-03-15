@@ -306,3 +306,64 @@ function ToDoForm() {
 
 export { ToDoForm };
 ```
+
+Tambien se podria:
+
+```jsx
+function ToDoForm() {
+
+  // conseguimos el contexto para modificar la activacion del portal y agregar un nuevo ToDo
+  const { setOpenModal, addToDo: addToDoToContext } =
+    React.useContext(TodoContext);
+
+  // useContext para controlar el texto del text area
+  const [texto, setTexto] = React.useState("");
+
+  // al cambiar el texto
+  function onChangeText (event){
+    setTexto(event.target.value);
+  }
+
+  // Para cerrar el portal
+  function closeModal() {
+    setOpenModal(false);
+  }
+
+  // Para agregar un ToDo
+  function addToDo() {
+    //const texto = document.getElementById("nuevo-todo").value || "wokitoki";
+    // nuevo modo de agregar texto, ya que usa el estado
+    addToDoToContext(texto);
+    closeModal();
+  }
+
+  return (
+    <div className="form-container">
+      <form
+        //desactivamos la accion por defecto del boton submit
+        onSubmit={(event) => {
+          event.preventDefault();
+        }}
+      >
+        <label>Ingrese descripcion del nuevo To Do</label>
+        <textarea
+          id="nuevo-todo"
+          placeholder="Nuevo To Do"
+          // ahora el texto debe actualizar el estado
+          value={texto}
+          onChange={onChangeTexto}
+        />
+        <--! --> Aqui llamamos a las funciones
+        <div className="button-container">
+          <button className="button-cancelar" onClick={closeModal}>
+            Cancelar
+          </button>
+          <button className="button-agregar" type="submit" onClick={addToDo}>
+            Añadir
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+}
+```
